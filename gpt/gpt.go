@@ -91,3 +91,15 @@ func ApplyProgrammingPromptTemplate(query string) (string, error) {
 
 	return prompt, nil
 }
+
+func ApplyGeneralPromptTemplate(query string) (string, error) {
+	templateBytes, err := ioutil.ReadFile("templates/general_template.txt")
+	if err != nil {
+		return "", fmt.Errorf("Error reading general prompt template: %v", err)
+	}
+
+	template := string(templateBytes)
+	prompt := strings.Replace(template, "${query}", query, -1)
+
+	return prompt, nil
+}
