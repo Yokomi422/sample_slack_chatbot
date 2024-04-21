@@ -1,6 +1,6 @@
 module github.com/Yokomi422/sample_slack_chatbot
 
-go 1.22
+go 1.22.0
 
 require (
 	github.com/joho/godotenv v1.5.1
@@ -9,6 +9,8 @@ require (
 )
 
 require (
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	golang.org/x/net v0.22.0 // indirect
 )

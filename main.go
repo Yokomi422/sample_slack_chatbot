@@ -3,17 +3,18 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+	"strings"
+
 	"github.com/Yokomi422/sample_slack_chatbot/gpt"
 	"github.com/joho/godotenv"
 	openai "github.com/sashabaranov/go-openai"
 	"github.com/slack-go/slack"
 	"github.com/slack-go/slack/slackevents"
 	"github.com/slack-go/slack/socketmode"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"os"
-	"strings"
 )
 
 func main() {
