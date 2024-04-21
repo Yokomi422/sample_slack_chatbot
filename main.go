@@ -70,7 +70,12 @@ func main() {
 			switch ev := innerEvent.Data.(type) {
 			case *slackevents.AppMentionEvent:
 				prompt := strings.TrimSpace(strings.TrimPrefix(ev.Text, fmt.Sprintf("<@%s>", ev.BotID)))
-				response, err := gpt.SendPrompt(client, prompt)
+				englishPrompt, err := gpt.TranslateToEnglish(client, prompt)
+				if err != nil {
+					log.Printf("Error translating prompt to English: %v", err)
+					return
+				}
+				response, err := gpt.SendPrompt(client, englishPrompt)
 				if err != nil {
 					log.Printf("Error sending prompt to OpenAI: %v", err)
 					return
@@ -115,7 +120,13 @@ func main() {
 					switch ev := innerEvent.Data.(type) {
 					case *slackevents.AppMentionEvent:
 						prompt := strings.TrimSpace(strings.TrimPrefix(ev.Text, fmt.Sprintf("<@%s>", ev.BotID)))
-						response, err := gpt.SendPrompt(client, prompt)
+						englishPrompt, err := gpt.TranslateToEnglish(client, prompt)
+						if err != nil {
+							log.Printf("Error translating prompt to English: %v", err)
+							return
+						}
+						fmt.Println("Translated prompt:", englishPrompt)
+						response, err := gpt.SendPrompt(client, englishPrompt)
 						if err != nil {
 							log.Printf("Error sending prompt to OpenAI: %v", err)
 							return
