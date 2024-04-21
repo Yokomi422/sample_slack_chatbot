@@ -75,6 +75,7 @@ func main() {
 					log.Printf("Error translating prompt to English: %v", err)
 					return
 				}
+				englishPrompt += " in Japanese"
 				response, err := gpt.SendPrompt(client, englishPrompt)
 				if err != nil {
 					log.Printf("Error sending prompt to OpenAI: %v", err)
