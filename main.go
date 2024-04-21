@@ -90,7 +90,11 @@ func main() {
 						return
 					}
 				case "general":
-					englishPrompt += " Please provide a clear and concise answer in Japanese."
+					englishPrompt, err = gpt.ApplyGeneralPromptTemplate(englishPrompt)
+					if err != nil {
+						log.Printf("Error applying general prompt template: %v", err)
+						return
+					}
 				default:
 					englishPrompt += " in Japanese"
 				}
