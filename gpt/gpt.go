@@ -79,3 +79,15 @@ func DetectIntent(client *openai.Client, prompt string) (string, error) {
 	intent := resp.Choices[0].Message.Content
 	return strings.ToLower(strings.TrimSpace(intent)), nil
 }
+
+func ApplyProgrammingPromptTemplate(query string) (string, error) {
+	templateBytes, err := ioutil.ReadFile("templates/programming_template.txt")
+	if err != nil {
+		return "", fmt.Errorf("Error reading programming prompt template: %v", err)
+	}
+
+	template := string(templateBytes)
+	prompt := strings.Replace(template, "${query}", query, -1)
+
+	return prompt, nil
+}
