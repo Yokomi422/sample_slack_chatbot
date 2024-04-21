@@ -148,6 +148,15 @@ func main() {
 							return
 						}
 
+						switch intent {
+						case "programming":
+							englishPrompt += " Please provide a detailed explanation and code examples if necessary."
+						case "general":
+							englishPrompt += " Please provide a clear and concise answer in Japanese."
+						default:
+							englishPrompt += " in Japanese"
+						}
+
 						response, err := gpt.SendPrompt(client, englishPrompt)
 						if err != nil {
 							log.Printf("Error sending prompt to OpenAI: %v", err)
