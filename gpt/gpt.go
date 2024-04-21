@@ -3,9 +3,9 @@ package gpt
 import (
 	"context"
 	"fmt"
-	"strings"
-
 	openai "github.com/sashabaranov/go-openai"
+	"io/ioutil"
+	"strings"
 )
 
 func SendPrompt(client *openai.Client, prompt string) (string, error) {
