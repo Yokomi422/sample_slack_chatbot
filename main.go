@@ -84,7 +84,11 @@ func main() {
 
 				switch intent {
 				case "programming":
-					englishPrompt += " Please provide a detailed explanation and code examples if necessary."
+					englishPrompt, err = gpt.ApplyProgrammingPromptTemplate(englishPrompt)
+					if err != nil {
+						log.Printf("Error applying programming prompt template: %v", err)
+						return
+					}
 				case "general":
 					englishPrompt += " Please provide a clear and concise answer in Japanese."
 				default:
@@ -150,7 +154,11 @@ func main() {
 
 						switch intent {
 						case "programming":
-							englishPrompt += " Please provide a detailed explanation and code examples if necessary."
+							englishPrompt, err = gpt.ApplyProgrammingPromptTemplate(englishPrompt)
+							if err != nil {
+								log.Printf("Error applying programming prompt template: %v", err)
+								return
+							}
 						case "general":
 							englishPrompt += " Please provide a clear and concise answer in Japanese."
 						default:
